@@ -1,0 +1,19 @@
+opam-version: "1.2"
+maintainer: ""
+authors: ["Sam Riyad"]
+tags: ["mirage" "multiplexing" "networking"]
+license: "MIT"
+homepage: ""
+          
+version: 1.0
+         
+dev-repo: ""
+bug-reports: ""             
+doc: ""
+build: [
+  [ "jbuilder" "subst" ] {pinned}
+  [ "jbuilder" "build" "-p" name "-j" jobs ]
+]
+depends: [
+  "jbuilder" {build}
+]
