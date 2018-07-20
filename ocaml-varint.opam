@@ -3,16 +3,16 @@ maintainer: "flatmapds@gmail.com"
 authors: ["Sam Riyad"]
 tags: ["mirage" "encoding"]
 license: "MIT"
-homepage: "github.com/XnuKernPoll/ocaml-varint"
-          
-version: 1.0
          
-dev-repo: "github.com/XnuKernPoll/ocaml-varint"
+homepage: "https://github.com/XnuKernPoll/ocaml-varint"
+dev-repo: "https://github.com/XnuKernPoll/ocaml-varint"
           
 build: [
-  [ "jbuilder" "subst" ] {pinned}
-  [ "jbuilder" "build" "-p" name "-j" jobs ]
+  ["jbuilder" "subst" "-p" name "--name" name] {pinned}
+  ["jbuilder" "build" "-p" name "-j" jobs]
 ]
+
+  
 depends: [
   "jbuilder" {build}
   "mstruct"
