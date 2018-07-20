@@ -1,19 +1,19 @@
 opam-version: "1.2"
-maintainer: ""
+maintainer: "flatmapds@gmail.com"
 authors: ["Sam Riyad"]
 tags: ["mirage" "encoding"]
 license: "MIT"
-homepage: ""
+homepage: "github.com/XnuKernPoll/ocaml-varint"
           
 version: 1.0
          
-dev-repo: ""
-bug-reports: ""             
-doc: ""
+dev-repo: "github.com/XnuKernPoll/ocaml-varint"
+          
 build: [
   [ "jbuilder" "subst" ] {pinned}
   [ "jbuilder" "build" "-p" name "-j" jobs ]
 ]
 depends: [
   "jbuilder" {build}
+  "mstruct"
 ]
