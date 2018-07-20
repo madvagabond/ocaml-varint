@@ -1,4 +1,4 @@
-open Varint.Encoding
+open Varint
 open OUnit2
 
        
