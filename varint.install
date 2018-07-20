@@ -1,0 +1,20 @@
+lib: [
+  "_build/install/default/lib/varint/META" {"META"}
+  "_build/install/default/lib/varint/opam" {"opam"}
+  "_build/install/default/lib/varint/varint.cmi" {"varint.cmi"}
+  "_build/install/default/lib/varint/varint.cmx" {"varint.cmx"}
+  "_build/install/default/lib/varint/varint.cmt" {"varint.cmt"}
+  "_build/install/default/lib/varint/varint.cmti" {"varint.cmti"}
+  "_build/install/default/lib/varint/varint.mli" {"varint.mli"}
+  "_build/install/default/lib/varint/varint.ml" {"varint.ml"}
+  "_build/install/default/lib/varint/varint.cma" {"varint.cma"}
+  "_build/install/default/lib/varint/varint.cmxa" {"varint.cmxa"}
+  "_build/install/default/lib/varint/varint.a" {"varint.a"}
+  "_build/install/default/lib/varint/varint.cmxs" {"varint.cmxs"}
+  "_build/install/default/lib/varint/varint.dune" {"varint.dune"}
+]
+doc: [
+  "_build/install/default/doc/varint/README.md"
+  "_build/install/default/doc/varint/LICENSE.md"
+  "_build/install/default/doc/varint/CHANGES.md~"
+]

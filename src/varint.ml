@@ -1,9 +1,15 @@
 module type VarIntEncoding = sig
   type t
          
-  val encode: t -> Cstruct.t
-  val decode: Cstruct.t -> t
-                             
+  val to_cstruct: t -> Cstruct.t
+  val of_cstruct: Cstruct.t -> t
+
+  val read_varint: Mstruct.t -> t
+  val write_varint: Mstruct.t -> t -> unit
+
+  val to_int: t -> int
+  val of_int: int -> t
+                                        
 end
 
 
@@ -53,8 +59,8 @@ module Make (INT: Integer) = struct
                     
                     
 
-  let encode t =
-    let buf = Mstruct.create size in
+  let write_varint buf t =
+
     let n = ref t in
 
     while (!n >= d) do
@@ -64,11 +70,16 @@ module Make (INT: Integer) = struct
       n := !n asr 7 
     done;
 
-    Mstruct.set_uint8 buf (to_int !n);
+    Mstruct.set_uint8 buf (to_int !n)
 
+
+
+  let to_cstruct t =
+    let buf = Mstruct.create (size + 1) in
+    write_varint buf t; 
     get_slice buf
 
-    
+              
 
 
 
@@ -78,8 +89,8 @@ module Make (INT: Integer) = struct
              
                        
 
-  let decode buf0 =
-    let buf = Mstruct.of_cstruct buf0 in
+  let read_varint buf =
+
 
     let read () =
       Mstruct.get_uint8 buf 
@@ -116,7 +127,17 @@ module Make (INT: Integer) = struct
     !v 
                  
 
-    
+
+  let of_cstruct buf0 = 
+    let buf = Mstruct.of_cstruct buf0 in
+    read_varint buf
+
+  let to_int t =
+    INT.to_int t
+
+
+  let of_int i =
+    INT.of_int i
                                  
                                  
 end 
@@ -140,3 +161,15 @@ module VarInt64 = Make(I64)
 
 
     
+module LengthFieldPrefixing (VI: VarIntEncoding) = struct
+  
+  let encode cs =
+    let pfx = Cstruct.len cs |> VI.of_int |> VI.to_cstruct in
+    Cstruct.append pfx cs
+
+                   
+  let decode buf =
+    let len = VI.read_varint buf |> VI.to_int in
+    Mstruct.sub buf 0 len  |> Mstruct.to_cstruct
+    
+end 
