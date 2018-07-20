@@ -15,7 +15,7 @@ Also please note it only works with unsigned values meaning you can't encode neg
 
 Here are a few examples that show how to use it.  
 
-``
+```ocaml
 open Varint
 
 let i = 412l in
@@ -25,13 +25,13 @@ Printf.printf "%d \n" (Cstruct.len buf);
 VarInt32.of_cstruct buf |> Int32.to_int in
 
 
-``
+```
 
 
 
 
 
-``
+```ocaml
 open Varint
 
 let module LFP = LengthFieldPrefixing(VarInt32) in
@@ -44,4 +44,4 @@ let buf = LFP.encode msg |> Mstruct.of_cstruct in
 let got = LFP.decode buf |> Cstruct.to_string in
 Printf.printf "encoded %s\ndecoded %s" hello got;  
 
-``
+```
