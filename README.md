@@ -21,7 +21,7 @@ open Varint
 let i = 412l in
 let buf = VarInt32.to_cstruct i in
 
-Printf.printf "%d" (Cstruct.len buf);
+Printf.printf "%d \n" (Cstruct.len buf);
 VarInt32.of_cstruct buf |> Int32.to_int in
 
 
@@ -42,6 +42,6 @@ let msg = Cstruct.of_string hello in
 let buf = LFP.encode msg |> Mstruct.of_cstruct in
 
 let got = LFP.decode buf |> Cstruct.to_string in
-Printf.printf "encoded %s \n decoded %s" hello got;  
+Printf.printf "encoded %s\ndecoded %s" hello got;  
 
 ``
