@@ -1,2 +1,2 @@
-# ocaml-varint32
+## ocaml-varint
 A simple VarInt implementation.
