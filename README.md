@@ -1,4 +1,4 @@
-#varint
+# varint
 
 A simple varint implementation modeled after the one found in Go's standard library.
 
