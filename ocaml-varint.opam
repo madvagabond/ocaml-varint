@@ -1,7 +1,7 @@
 opam-version: "1.2"
 maintainer: ""
 authors: ["Sam Riyad"]
-tags: ["mirage" "multiplexing" "networking"]
+tags: ["mirage" "encoding"]
 license: "MIT"
 homepage: ""
           
