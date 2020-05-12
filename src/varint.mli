@@ -1,35 +1,31 @@
+type error = UnexpectedEof
 
 
-module type VarIntEncoding = sig
+module type S = sig
+
   type t
-         
+  
   val to_cstruct: t -> Cstruct.t
-  val of_cstruct: Cstruct.t -> t
+  val of_cstruct: Cstruct.t -> (t * Cstruct.t, error) result
 
-  val read_varint: Mstruct.t -> t
-  val write_varint: Mstruct.t -> t -> unit
+  (** 
+     put_uvarint buffer off int  
 
-  val to_int: t -> int
-  val of_int: int -> t
-                       
-                             
+
+     be careful with this function be sure that the buffer has enough space 
+     the max sizes for 64 bit is 10, 5 for 32 bit, and 3 for 16 bit so be sure you have that extra space allocated just in case
+  
+  *)
+
+  val put_uvarint: Cstruct.t -> t -> int
+
+  
 end
 
-(** Encoder for Int32 **)
-module VarInt32: VarIntEncoding with type t = int32
-
-
-(** Encoder for Int64*)
-module VarInt64: VarIntEncoding with type t = int64
 
 
 
 
-(** A module for length field prefixing with VarInts **)
-module LengthFieldPrefixing:
-functor (VI: VarIntEncoding) -> sig
-  
-  val encode: Cstruct.t -> Cstruct.t
-  val decode: Mstruct.t -> Cstruct.t
-                             
-end 
+module Make: functor (I: Stdint.Int) -> S with type t = I.t
+
+

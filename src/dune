@@ -1,0 +1,7 @@
+(library
+ (public_name varint)
+ (name varint)
+ (libraries cstruct stdint)
+)
+
+
