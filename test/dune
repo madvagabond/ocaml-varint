@@ -1,0 +1,8 @@
+(test
+  (name test)
+
+
+(libraries varint stdint qcheck cstruct)
+   
+
+)
